@@ -1,0 +1,34 @@
+<section>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+    <ul>
+      <li> <label for='title'> Başlık</label>
+        <input type="text" name="title" id="title" formControlName="title">
+        <div *ngIf="form.get('title')?.hasError('minLength')"> Length is not appropriate</div>
+
+        <div *ngIf="form.get('title')?.errors?.['required']">
+          Name is required.
+        </div>
+
+      </li>
+      <li> <label for='body'> Yazı </label>
+        <input type="text" name="body" id="body" formControlName="body">
+      </li>
+      <li> <label for='author'> Yazar </label>
+        <input type="text" name="author" id="author" formControlName="author">
+      </li>
+      <li>
+        <label for="category">Kategori</label>
+        <select name="category" id="category" formControlName="category">
+          <option value="suggestion">Tavsiye</option>
+          <option value="trouble">Dert</option>
+
+        </select>
+
+      </li>
+    </ul>
+    <button type="submit" [disabled]="!form.valid"> Kaydet</button>
+  </form>
+
+</section>
